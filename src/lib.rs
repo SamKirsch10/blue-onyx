@@ -107,21 +107,11 @@ pub fn direct_ml_available() -> bool {
 
 /// Log information about available GPU devices
 pub fn log_available_gpus() {
-    #[cfg(all(windows, feature = "windows_ml"))]
-    {
-        info!("Windows ML backend enabled; attempting DirectX GPU acceleration when available");
-        info!(
-            "If DirectX initialization fails, Windows ML will fall back to CPU execution automatically"
-        );
-    }
-
-    #[cfg(all(windows, not(feature = "windows_ml")))]
-    {
-        if direct_ml_available() {
-            info!("DirectML is available for GPU inference");
-        } else {
-            info!("DirectML is not available - only CPU inference will be supported");
-        }
+    #[cfg(windows)]
+    if direct_ml_available() {
+        info!("DirectML is available for GPU inference");
+    } else {
+        info!("DirectML is not available - only CPU inference will be supported");
     }
 
     #[cfg(not(windows))]

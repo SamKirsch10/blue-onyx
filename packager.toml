@@ -6,7 +6,6 @@ description = "Blue Onyx object detection service and utilities"
 authors = ["Blue Onyx Team"]
 homepage = "https://github.com/blue-onyx/blue-onyx"
 out-dir = "target/release"
-before-packaging-command = "cargo build --release --no-default-features"
 
 # All binaries
 binaries = [
